@@ -1,51 +1,37 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Hello, World!</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-      <h1 class="title">Hello World! </h1>
-      <p id="currentTime"></p>
-      <script src="script.js"></script>
-  </body>
-</html><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Pkdriller Codes Protector</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Cyber/Hacker Fonts -->
+  <!-- Fonts for cyber/hacker feel -->
   <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono|Orbitron:wght@900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --hacker-green: #00ff41;
-      --hacker-pink: #ff00e6;
-      --hacker-red: #ff005c;
-      --hacker-blue: #00d9ff;
-      --cyber-bg: #080018;
-      --cyber-frame: #282c34;
-      --cyber-glow: 0 0 16px var(--hacker-green), 0 0 2px var(--hacker-pink);
-      --border-cyber: 2px solid var(--hacker-green);
+      --green: #00ff41;
+      --pink: #ff00e6;
+      --red: #ff005c;
+      --blue: #00d9ff;
+      --cyber-bg: #0b001f;
+      --cyber-panel: #19003b;
     }
     html, body {
-      height: 100%;
+      min-height: 100vh;
       margin: 0;
       padding: 0;
-      background: radial-gradient(ellipse at 50% 10%, #1a0033 0%, #080018 100%);
-      min-height: 100vh;
       font-family: 'Share Tech Mono', 'Orbitron', monospace;
-      color: var(--hacker-green);
-      overflow-x: hidden;
+      background: radial-gradient(circle at 50% 10%, #24105e 0%, #0b001f 100%);
+      color: var(--green);
     }
+    /* Animated cyber grid background */
     body::before {
       content: "";
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      inset: 0;
       z-index: 0;
-      opacity: 0.18;
-      background: repeating-linear-gradient(120deg, var(--hacker-green) 0 2px, transparent 2px 40px),
-                  repeating-linear-gradient(60deg, var(--hacker-pink) 0 2px, transparent 2px 40px);
+      opacity: 0.16;
+      background: repeating-linear-gradient(120deg, var(--green) 0 2px, transparent 2px 40px),
+                  repeating-linear-gradient(60deg, var(--pink) 0 2px, transparent 2px 40px);
       animation: gridmove 8s linear infinite;
       pointer-events: none;
     }
@@ -53,29 +39,30 @@
       0% { background-position: 0 0, 0 0; }
       100% { background-position: 80px 160px, 160px 80px; }
     }
+    /* Loading overlay */
     #loading-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(8,0,24,0.98);
+      background: rgba(11,0,31,0.99);
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      flex-direction: column;
       transition: opacity 0.6s;
     }
     .loader-circle {
-      border: 8px solid var(--cyber-frame);
-      border-top: 8px solid var(--hacker-green);
-      border-right: 8px solid var(--hacker-pink);
-      border-bottom: 8px solid var(--hacker-blue);
-      border-left: 8px solid var(--hacker-red);
+      border: 8px solid #282c34;
+      border-top: 8px solid var(--green);
+      border-right: 8px solid var(--pink);
+      border-bottom: 8px solid var(--blue);
+      border-left: 8px solid var(--red);
       border-radius: 50%;
       width: 100px;
       height: 100px;
-      animation: spin 1.4s linear infinite;
+      animation: spin 1.2s linear infinite;
       margin-bottom: 32px;
-      box-shadow: 0 0 32px var(--hacker-green), 0 0 16px var(--hacker-pink);
+      box-shadow: 0 0 32px var(--green), 0 0 16px var(--pink);
     }
     @keyframes spin {
       0% { transform: rotate(0deg);}
@@ -85,18 +72,27 @@
       font-family: 'Orbitron', monospace;
       font-size: 2.2rem;
       letter-spacing: 0.15em;
-      color: var(--hacker-green);
-      text-shadow: 0 0 8px var(--hacker-green), 0 0 2px var(--hacker-pink);
+      color: var(--green);
+      text-shadow: 0 0 8px var(--green), 0 0 2px var(--pink);
     }
+    .hacking {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.4rem;
+      color: var(--pink);
+      margin-top:10px;
+      letter-spacing:0.14em;
+      text-shadow: 0 0 8px var(--pink);
+    }
+    /* Main content */
     .container {
       position: relative;
       z-index: 2;
       margin: 38px auto 0 auto;
       max-width: 880px;
-      background: rgba(28, 0, 56, 0.97);
+      background: rgba(25,0,59,0.98);
       border-radius: 14px;
-      border: var(--border-cyber);
-      box-shadow: 0 0 32px 4px var(--hacker-pink), 0 0 8px var(--hacker-green);
+      border: 2.5px solid var(--green);
+      box-shadow: 0 0 32px 4px var(--pink), 0 0 8px var(--green);
       padding: 24px 24px 48px 24px;
       backdrop-filter: blur(4px);
       overflow: visible;
@@ -105,38 +101,38 @@
     .title {
       font-family: 'Orbitron', monospace;
       font-size: 2.5rem;
-      color: var(--hacker-green);
+      color: var(--green);
       text-align: center;
       margin-bottom: 6px;
       letter-spacing: 0.13em;
-      text-shadow: var(--cyber-glow);
+      text-shadow: 0 0 16px var(--green), 0 0 2px var(--pink);
     }
     .subtitle {
       font-size: 1.1rem;
-      color: var(--hacker-pink);
+      color: var(--pink);
       text-align: center;
       margin-bottom: 24px;
       letter-spacing: 0.05em;
-      text-shadow: 0 0 6px var(--hacker-pink);
+      text-shadow: 0 0 6px var(--pink);
     }
     .area-label {
-      color: var(--hacker-blue);
+      color: var(--blue);
       margin-bottom: 6px;
       font-weight: bold;
       font-size: 1.08rem;
       letter-spacing: 0.06em;
-      text-shadow: 0 0 6px var(--hacker-blue);
+      text-shadow: 0 0 6px var(--blue);
     }
     .code-area {
       width: 100%;
       min-height: 160px;
-      background: #12002a;
-      color: var(--hacker-green);
-      border: var(--border-cyber);
+      background: #16002e;
+      color: var(--green);
+      border: 2px solid var(--blue);
       border-radius: 8px;
       font-family: 'Share Tech Mono', monospace;
       font-size: 1.07rem;
-      box-shadow: 0 0 12px var(--hacker-pink);
+      box-shadow: 0 0 12px var(--pink);
       resize: vertical;
       padding: 10px 14px;
       margin-bottom: 18px;
@@ -144,7 +140,7 @@
       transition: box-shadow 0.12s;
     }
     .code-area:focus {
-      box-shadow: 0 0 24px var(--hacker-green), 0 0 7px var(--hacker-pink);
+      box-shadow: 0 0 24px var(--green), 0 0 7px var(--pink);
     }
     .btns-row {
       display: flex;
@@ -159,19 +155,19 @@
       border: none;
       border-radius: 7px;
       padding: 10px 25px;
-      background: linear-gradient(90deg, var(--hacker-green) 0%, var(--hacker-pink) 100%);
-      color: #080018;
+      background: linear-gradient(90deg, var(--green) 0%, var(--pink) 100%);
+      color: #0b001f;
       font-weight: bold;
-      box-shadow: 0 0 12px var(--hacker-pink);
+      box-shadow: 0 0 12px var(--pink);
       cursor: pointer;
       letter-spacing: 0.06em;
       margin-bottom: 4px;
       transition: background 0.18s, box-shadow 0.18s, color 0.18s;
     }
     .cyber-btn:hover {
-      background: linear-gradient(90deg, var(--hacker-pink) 0%, var(--hacker-green) 100%);
-      color: var(--hacker-green);
-      box-shadow: 0 0 20px var(--hacker-green), 0 0 8px var(--hacker-pink);
+      background: linear-gradient(90deg, var(--pink) 0%, var(--green) 100%);
+      color: var(--green);
+      box-shadow: 0 0 20px var(--green), 0 0 8px var(--pink);
     }
     .file-input {
       display: none;
@@ -187,28 +183,28 @@
       align-items: center;
       gap: 10px;
       font-size: 1.1rem;
-      color: var(--hacker-pink);
+      color: var(--pink);
       text-decoration: none;
       font-family: 'Orbitron', monospace;
       background: #1a0033;
       padding: 10px 28px;
       border-radius: 7px;
-      border: 1.5px solid var(--hacker-pink);
-      box-shadow: 0 0 8px var(--hacker-pink);
+      border: 1.5px solid var(--pink);
+      box-shadow: 0 0 8px var(--pink);
       transition: background 0.16s, color 0.16s, border 0.16s;
-      text-shadow: 0 0 8px var(--hacker-pink);
+      text-shadow: 0 0 8px var(--pink);
     }
     .follow-link:hover {
-      background: var(--hacker-pink);
+      background: var(--pink);
       color: #1a0033;
-      border-color: var(--hacker-green);
-      text-shadow: 0 0 14px var(--hacker-green);
+      border-color: var(--green);
+      text-shadow: 0 0 14px var(--green);
     }
     .follow-link svg {
       width: 1.5em;
       height: 1.5em;
       vertical-align: middle;
-      filter: drop-shadow(0 0 7px var(--hacker-pink));
+      filter: drop-shadow(0 0 7px var(--pink));
     }
     @media (max-width: 650px) {
       .container { padding: 10px; }
@@ -218,18 +214,18 @@
   </style>
 </head>
 <body>
+  <!-- Loading Overlay -->
   <div id="loading-overlay">
     <div class="loader-circle"></div>
     <div class="loading-text">System Initializing...</div>
-    <div style="margin-top:14px;color:var(--hacker-pink);font-size:1.3rem;">
-      <span style="font-family:Orbitron,sans-serif;letter-spacing:0.14em;">HACKING</span>
-    </div>
+    <div class="hacking">HACKING</div>
   </div>
+  <!-- Main Container -->
   <div class="container">
     <div class="title">Pkdriller Codes Protector</div>
     <div class="subtitle">
       Obfuscate &amp; Deobfuscate JavaScript &amp; HTML with Cybernetic Security.<br>
-      <span style="color:var(--hacker-blue);">Bright. Fast. Holographic. Hacker Style.</span>
+      <span style="color:var(--blue);">Bright. Fast. Holographic. Hacker Style.</span>
     </div>
     <div class="area-label">Paste or write your JavaScript or HTML code:</div>
     <textarea id="input-code" class="code-area" placeholder="Paste your code here..."></textarea>
@@ -254,7 +250,7 @@
     </div>
   </div>
   <script>
-    // Loading overlay logic
+    // Fast loading overlay
     window.addEventListener('DOMContentLoaded', function() {
       setTimeout(function() {
         document.getElementById('loading-overlay').style.opacity = '0';
@@ -262,7 +258,7 @@
           document.getElementById('loading-overlay').style.display = 'none';
           document.querySelector('.container').style.display = 'block';
         }, 600);
-      }, 1600);
+      }, 1200);
     });
 
     // Obfuscation
@@ -279,7 +275,7 @@
         const base64 = btoa(unescape(encodeURIComponent(code)));
         obfuscated = `<script>document.write(decodeURIComponent(escape(atob('${base64}'))));</script>`;
       } else {
-        // JavaScript Obfuscation: Unicode escape + base64 (simple, not bulletproof)
+        // JavaScript Obfuscation: Unicode escape
         const uEsc = code.split('').map(c=> '\\x'+c.charCodeAt(0).toString(16).padStart(2,'0')).join('');
         obfuscated = `eval("${uEsc}")`;
       }
@@ -340,4 +336,4 @@
     }
   </script>
 </body>
-</html>
+      </html>
