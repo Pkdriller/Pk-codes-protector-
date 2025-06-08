@@ -2,349 +2,896 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Pkdriller Codes Protector</title>
+  <title>PKDriller Codes Protector</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Cybernetic & Holographic styles -->
+  <!-- Google Fonts for Cyber/Hacker Style -->
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@800&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
-
     :root {
-      --neon-green: #39ff14;
-      --neon-pink: #ff00de;
-      --neon-red: #ff073a;
-      --bg-dark: #14001a;
-      --panel-dark: #231033cc;
-      --border-neon: 0 0 10px var(--neon-green), 0 0 40px var(--neon-pink), 0 0 80px var(--neon-red);
-      --shadow-halo: 0 0 8px var(--neon-green), 0 0 10px var(--neon-pink);
+      --cyber-green: #39ff14;
+      --cyber-pink: #ff00c8;
+      --cyber-red: #ff1744;
+      --cyber-bg1: #131313;
+      --cyber-bg2: #222;
+      --cyber-shadow: 0 0 20px #39ff14, 0 0 40px #ff00c8, 0 0 80px #ff1744;
+      --cyber-glass: rgba(25, 25, 35, 0.8);
+      --cyber-border: 2px solid #39ff14;
+      --cyber-corner: 16px;
     }
-
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #0a0a0f 0%, #1a1a2e 100%);
+      font-family: 'Share Tech Mono', 'Orbitron', monospace;
+      color: #f3f3f3;
       min-height: 100vh;
-      font-family: 'Orbitron', 'Consolas', 'Courier New', monospace;
-      background: linear-gradient(120deg, #21002c 0%, #000d1a 100%);
-      color: var(--neon-green);
-      overflow: hidden;
+      overflow-x: hidden;
     }
-
-    /* Holographic cyber grid animation */
-    #live-bg {
+    body {
+      position: relative;
+      min-height: 100vh;
+    }
+    /* Holographic/Cybernetic Background Animation */
+    .background-anim {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
       z-index: 0;
       pointer-events: none;
+      overflow: hidden;
+      opacity: 0.5;
     }
-
+    .cyber-dot {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.7;
+      filter: blur(3px);
+      animation: moveDot 16s linear infinite alternate;
+    }
+    @keyframes moveDot {
+      0% { transform: translateY(0) scale(1);}
+      100% { transform: translateY(80vh) scale(1.5);}
+    }
+    /* Main Container */
     .container {
       position: relative;
       z-index: 2;
-      max-width: 920px;
-      margin: 50px auto;
-      background: var(--panel-dark);
-      border-radius: 20px;
-      box-shadow: 0 0 40px var(--neon-pink), 0 0 20px var(--neon-green);
-      padding: 2.5rem 2rem 2rem 2rem;
-      border: 2px solid var(--neon-green);
-      backdrop-filter: blur(10px);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 16px 48px 16px;
+      background: var(--cyber-glass);
+      box-shadow: 0 0 30px #0ff, 0 0 80px #f0f;
+      border-radius: var(--cyber-corner);
+      margin-top: 40px;
+      margin-bottom: 40px;
     }
-
     h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: 2.8rem;
+      color: var(--cyber-green);
+      text-shadow: 0 0 20px var(--cyber-green), 0 0 30px var(--cyber-pink);
       text-align: center;
-      font-size: 2.5rem;
+      margin-bottom: 0;
+      letter-spacing: 3px;
+    }
+    h2 {
+      color: var(--cyber-pink);
+      text-shadow: 0 0 10px var(--cyber-pink), 0 0 20px var(--cyber-red);
+      margin-top: 2.5rem;
+      font-size: 2rem;
       letter-spacing: 2px;
-      color: var(--neon-pink);
-      text-shadow: 0 0 12px var(--neon-green), 0 0 4px var(--neon-red);
-      margin-bottom: 0.5em;
     }
-
-    .subtitle {
+    .desc {
       text-align: center;
-      color: var(--neon-green);
-      margin-bottom: 2em;
-      font-size: 1.1rem;
-      text-shadow: 0 0 8px var(--neon-pink);
+      font-size: 1.2rem;
+      color: #cfc;
+      margin-bottom: 2.5rem;
+      text-shadow: 0 0 10px var(--cyber-green);
     }
-
-    .flex-area {
+    /* Code Areas */
+    .code-section {
       display: flex;
-      gap: 1.5rem;
       flex-wrap: wrap;
-      justify-content: center;
+      gap: 32px;
+      justify-content: space-between;
+      margin-bottom: 42px;
     }
-
-    .panel {
-      flex: 1 1 350px;
+    .code-box {
+      flex: 1 1 420px;
       display: flex;
       flex-direction: column;
-      background: #2c003d66;
-      border-radius: 14px;
-      box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-pink);
-      margin-bottom: 1.5rem;
-      padding: 1rem;
+      background: var(--cyber-bg2);
+      border-radius: var(--cyber-corner);
+      border: var(--cyber-border);
+      box-shadow: 0 0 20px var(--cyber-pink);
+      padding: 24px 16px;
       min-width: 320px;
-      border: 1.5px solid var(--neon-pink);
+      margin-bottom: 24px;
     }
-
-    textarea {
-      background: #1a0033e6;
-      color: var(--neon-green);
-      border: 2px solid var(--neon-red);
-      border-radius: 9px;
-      font-size: 1rem;
-      padding: 1em;
-      resize: vertical;
-      min-height: 150px;
-      font-family: 'Fira Mono', 'Consolas', monospace;
-      box-shadow: 0 0 14px var(--neon-pink);
-      outline: none;
-      transition: border .2s;
-    }
-
-    textarea:focus {
-      border: 2.5px solid var(--neon-green);
-      box-shadow: 0 0 25px var(--neon-green);
-    }
-
-    .btn-group {
-      margin: 1em 0 0 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1em;
-      justify-content: center;
-    }
-
-    .btn {
-      background: linear-gradient(90deg, var(--neon-green) 0%, var(--neon-pink) 100%);
-      color: #000;
-      font-family: 'Orbitron', monospace;
+    .code-box label {
       font-size: 1.1rem;
-      border: none;
-      border-radius: 8px;
-      padding: 0.7em 1.8em;
-      cursor: pointer;
-      box-shadow: 0 0 8px var(--neon-green), 0 0 12px var(--neon-pink);
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-shadow: 0 0 8px var(--neon-red);
-      transition: transform 0.1s, box-shadow 0.2s;
+      color: var(--cyber-green);
+      margin-bottom: 12px;
+      text-shadow: 0 0 8px var(--cyber-green);
     }
-
-    .btn:active {
-      transform: scale(0.98);
-      box-shadow: 0 0 24px var(--neon-red);
+    .code-area {
+      width: 100%;
+      min-height: 180px;
+      background: #181824;
+      color: #fff;
+      font-size: 1.06rem;
+      font-family: 'Share Tech Mono', monospace;
+      border: var(--cyber-border);
+      border-radius: 9px;
+      margin-bottom: 14px;
+      padding: 12px;
+      resize: vertical;
+      box-shadow: 0 0 12px #0f0;
+      outline: none;
+      transition: box-shadow 0.2s;
     }
-
-    .footer {
-      text-align: center;
-      margin-top: 2em;
-      color: var(--neon-green);
-      font-size: 1rem;
-      text-shadow: 0 0 8px var(--neon-pink);
+    .code-area:focus {
+      box-shadow: 0 0 24px var(--cyber-pink);
     }
-    .social-btns {
+    /* Buttons */
+    .btn-row {
       display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .cyber-btn {
+      background: linear-gradient(120deg, var(--cyber-green), var(--cyber-pink), var(--cyber-red));
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      padding: 10px 22px;
+      font-size: 1.1rem;
+      font-family: 'Orbitron', monospace;
+      cursor: pointer;
+      box-shadow: 0 0 16px var(--cyber-green), 0 0 24px var(--cyber-pink);
+      transition: background 0.2s, transform 0.15s;
+      text-shadow: 0 0 8px #fff, 0 0 10px #0f0;
+      outline: none;
+      letter-spacing: 2px;
+    }
+    .cyber-btn:active {
+      transform: scale(0.97);
+      background: linear-gradient(120deg, var(--cyber-red), var(--cyber-green), var(--cyber-pink));
+    }
+    .cyber-btn i {
+      margin-right: 7px;
+    }
+    /* Social Buttons */
+    .social-row {
+      display: flex;
+      gap: 18px;
       justify-content: center;
-      gap: 1.2em;
-      margin: 1.5em 0 0 0;
+      margin: 2.5rem 0 1rem 0;
+      flex-wrap: wrap;
     }
     .social-btn {
       display: flex;
       align-items: center;
-      gap: 0.5em;
-      background: linear-gradient(90deg, var(--neon-pink), var(--neon-green), var(--neon-red));
+      gap: 8px;
+      background: linear-gradient(90deg, #25d366 0%, #39ff14 50%, #ff00c8 100%);
       color: #fff;
-      padding: 0.65em 1.5em;
-      border-radius: 12px;
-      font-size: 1.05em;
-      font-weight: bold;
-      text-decoration: none;
-      box-shadow: 0 0 8px var(--neon-red), 0 0 14px var(--neon-green);
       border: none;
-      transition: background 0.2s, box-shadow 0.2s;
-      outline: none;
+      border-radius: 10px;
+      padding: 12px 22px;
+      font-size: 1.05rem;
+      font-family: 'Orbitron', monospace;
+      font-weight: bold;
+      box-shadow: 0 0 20px #25d366, 0 0 14px #ff00c8;
+      cursor: pointer;
+      letter-spacing: 2px;
+      text-decoration: none;
+      text-shadow: 0 0 10px #fff, 0 0 10px #39ff14;
+      transition: background 0.18s;
     }
-    .social-btn:hover {
-      background: linear-gradient(90deg, var(--neon-green), var(--neon-red), var(--neon-pink));
-      box-shadow: 0 0 22px var(--neon-pink);
-      color: #000;
+    .social-btn.github {
+      background: linear-gradient(90deg, #ff00c8 0%, #222 80%);
+      box-shadow: 0 0 20px #ff00c8, 0 0 10px #fff;
     }
-    .social-btn svg {
-      width: 1.3em; height: 1.3em;
-      filter: drop-shadow(0 0 4px var(--neon-green));
+    .social-btn:active {
+      filter: brightness(1.08);
     }
+    /* Responsive */
     @media (max-width: 900px) {
-      .container { margin: 15px; }
-      .flex-area { flex-direction: column; }
+      .code-section { flex-direction: column; }
+      .container { padding: 24px 4px; }
+    }
+    @media (max-width: 600px) {
+      .code-area { min-height: 110px; font-size: 1rem; }
+      h1 { font-size: 2rem; }
+      .container { margin-top: 10px; margin-bottom: 10px; }
+    }
+    /* Footer */
+    .footer {
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(90deg, #111 0%, #1a1a2e 100%);
+      padding: 16px 0 12px 0;
+      font-size: 1.04rem;
+      letter-spacing: 1px;
+      border-radius: var(--cyber-corner);
+      box-shadow: 0 0 10px #0f0, 0 0 20px #f0f;
+      margin: 24px 0 0 0;
+    }
+    .footer span {
+      color: var(--cyber-pink);
+      font-family: 'Orbitron', monospace;
+    }
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      background: #232;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #0f0;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <!-- Live cyber grid background -->
-  <canvas id="live-bg"></canvas>
-
+  <div class="background-anim" id="bg-anim"></div>
   <div class="container">
-    <h1>Pkdriller Codes Protector</h1>
-    <div class="subtitle">
-      Obfuscate & Deobfuscate your JavaScript and HTML codes instantly.<br>
-      <span style="color: var(--neon-red);">Cybernetic Holographic Edition</span>
+    <h1><i class="fas fa-shield-halved"></i> PKDriller Codes Protector</h1>
+    <div class="desc">
+      Obfuscate &amp; deobfuscate JavaScript and HTML with cybernetic protection.<br>
+      <span style="color:var(--cyber-pink);">Fast, luminous, and futuristic.</span>
     </div>
-
-    <div class="flex-area">
-      <div class="panel">
-        <label for="inputCode"><b>Input your Code (JavaScript or HTML):</b></label>
-        <textarea id="inputCode" placeholder="Paste your JS or HTML code here..."></textarea>
-        <div class="btn-group">
-          <button class="btn" onclick="obfuscateJS()">Obfuscate JavaScript</button>
-          <button class="btn" onclick="obfuscateHTML()">Obfuscate HTML</button>
-          <button class="btn" onclick="deobfuscateJS()">Deobfuscate JavaScript</button>
-          <button class="btn" onclick="deobfuscateHTML()">Deobfuscate HTML</button>
-          <button class="btn" onclick="clearAll()">Clear</button>
+    <div class="code-section">
+      <!-- Input Code Box -->
+      <div class="code-box">
+        <label for="inputCode">Your Code (JavaScript / HTML):</label>
+        <textarea id="inputCode" class="code-area" placeholder="Paste your code here..."></textarea>
+        <div class="btn-row">
+          <button class="cyber-btn" onclick="uploadFile('inputCode')">
+            <i class="fas fa-upload"></i> Upload File
+          </button>
+          <button class="cyber-btn" onclick="clearCode('inputCode')">
+            <i class="fas fa-eraser"></i> Clear
+          </button>
+        </div>
+        <input type="file" id="fileInput" style="display:none" accept=".js,.html,.txt,.json">
+      </div>
+      <!-- Output Code Box -->
+      <div class="code-box">
+        <label for="outputCode">Result:</label>
+        <textarea id="outputCode" class="code-area" placeholder="Output will appear here..." readonly></textarea>
+        <div class="btn-row">
+          <button class="cyber-btn" onclick="downloadCode('outputCode')">
+            <i class="fas fa-download"></i> Download Result
+          </button>
+          <button class="cyber-btn" onclick="copyCode('outputCode')">
+            <i class="fas fa-copy"></i> Copy
+          </button>
         </div>
       </div>
-
-      <div class="panel">
-        <label for="outputCode"><b>Result:</b></label>
-        <textarea id="outputCode" readonly placeholder="Your obfuscated/deobfuscated code will appear here..."></textarea>
-        <div class="btn-group">
-          <button class="btn" onclick="copyResult()">Copy Result</button>
-        </div>
-      </div>
     </div>
-    <div class="social-btns">
-      <a class="social-btn" href="https://whatsapp.com/channel/0029Vad7YNyJuyA77CtIPX0x" target="_blank" rel="noopener">
-        <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M23.7 19.2c-.4-.2-2.2-1.1-2.5-1.2-.3-.1-.5-.2-.7.2-.2.3-.7 1.2-.8 1.4-.1.2-.3.3-.6.1-.4-.2-1.5-.6-2.8-1.9-1-1.1-1.7-2.3-1.9-2.7-.2-.3 0-.4.2-.6.2-.2.3-.3.4-.5.1-.1.1-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.7-.9-2.4-.2-.5-.5-.4-.7-.4-.2 0-.4 0-.5 0-.2 0-.5.1-.8.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.2 3.2c.1.2 2.1 3.2 5.1 4.4.7.3 1.3.5 1.7.6.7.2 1.3.2 1.7.1.5-.1 1.5-.6 1.7-1.2.2-.5.2-1 .1-1.2-.1-.2-.4-.3-.7-.5z" fill="#fff"/></svg>
-        Follow Channel
+    <!-- Obfuscate / Deobfuscate Buttons -->
+    <div class="btn-row" style="justify-content:center; margin-bottom:32px;">
+      <button class="cyber-btn" onclick="obfuscateJS()">
+        <i class="fa-solid fa-lock"></i> Obfuscate JavaScript
+      </button>
+      <button class="cyber-btn" onclick="deobfuscateJS()">
+        <i class="fa-solid fa-unlock"></i> Deobfuscate JavaScript
+      </button>
+      <button class="cyber-btn" onclick="obfuscateHTML()">
+        <i class="fa-solid fa-lock"></i> Obfuscate HTML
+      </button>
+      <button class="cyber-btn" onclick="deobfuscateHTML()">
+        <i class="fa-solid fa-unlock"></i> Deobfuscate HTML
+      </button>
+    </div>
+    <!-- Follow Buttons -->
+    <div class="social-row">
+      <a class="social-btn" href="https://whatsapp.com/channel/0029Vad7YNyJuyA77CtIPX0x" target="_blank">
+        <i class="fab fa-whatsapp"></i> Follow Whatsapp Channel
       </a>
-      <a class="social-btn" href="https://github.com/Pkdriller" target="_blank" rel="noopener">
-        <svg viewBox="0 0 32 32" fill="none"><path d="M16.002 2.004c-7.73 0-14 6.27-14 14 0 6.175 4.006 11.413 9.566 13.264.7.13.956-.304.956-.676 0-.335-.012-1.222-.018-2.4-3.89.844-4.71-1.876-4.71-1.876-.637-1.618-1.556-2.05-1.556-2.05-1.272-.87.096-.853.096-.853 1.406.099 2.148 1.444 2.148 1.444 1.25 2.143 3.282 1.525 4.082 1.168.127-.905.49-1.526.892-1.878-3.104-.353-6.368-1.552-6.368-6.907 0-1.526.545-2.775 1.44-3.755-.144-.354-.625-1.78.136-3.712 0 0 1.176-.377 3.855 1.433a13.36 13.36 0 0 1 3.514-.472c1.193.005 2.395.162 3.514.472 2.677-1.81 3.852-1.433 3.852-1.433.762 1.932.281 3.358.138 3.712.898.98 1.438 2.23 1.438 3.755 0 5.367-3.268 6.55-6.384 6.896.504.434.956 1.293.956 2.605 0 1.88-.017 3.398-.017 3.863 0 .375.253.812.963.674C25.999 27.413 30 22.175 30 16.004c0-7.73-6.27-14-13.998-14z" fill="#fff"/></svg>
-        Follow on GitHub
+      <a class="social-btn github" href="https://github.com/Pkdriller" target="_blank">
+        <i class="fab fa-github"></i> Follow me on GitHub
       </a>
     </div>
-    <div class="footer">
-      &copy; 2025 <span style="color: var(--neon-pink)">Pkdriller</span>. All rights reserved.<br>
-      <span style="color: var(--neon-red)">Cybernetic | Holographic | High Tech</span>
+    <!-- Instructions -->
+    <h2>How it works</h2>
+    <ul style="font-size:1.08rem; color:#fff;">
+      <li>Paste or upload your JavaScript/HTML code.</li>
+      <li>Select the desired action: obfuscate or deobfuscate.</li>
+      <li>Copy or download the result, all in your browser.</li>
+      <li>No code leaves your device. <span style="color:var(--cyber-green);">100% client-side.</span></li>
+    </ul>
+    <!-- Tech Note -->
+    <div style="margin-top:2rem; color:var(--cyber-pink); font-family:'Orbitron',sans-serif; font-size:1.18rem; text-align:center;">
+      <i class="fa-solid fa-microchip"></i> Powered by high-tech browser algorithms, holographic cyber style, and luminous hacker colors!
     </div>
   </div>
-
-  <!-- Live background cybernetic grid/holo effect -->
-  <script>
-    const canvas = document.getElementById('live-bg');
-    const ctx = canvas.getContext('2d');
-    let w = window.innerWidth, h = window.innerHeight;
-    function resizeCanvas() {
-      w = window.innerWidth;
-      h = window.innerHeight;
-      canvas.width = w;
-      canvas.height = h;
+  <div class="footer">
+    &copy; <span>PKDriller</span> Codes Protector · All Rights Reserved · <span>2025</span>
+  </div>
+<script>
+  // Live Holographic Background Animation
+  function randomColor() {
+    const colors = ['#39ff14', '#ff00c8', '#ff1744', '#0ff', '#f0f', '#25d366'];
+    return colors[Math.floor(Math.random()*colors.length)];
+  }
+  function createDots() {
+    const bg = document.getElementById('bg-anim');
+    for(let i=0;i<18;i++) {
+      const dot = document.createElement('div');
+      dot.className = 'cyber-dot';
+      dot.style.width = dot.style.height = `${Math.random()*60+24}px`;
+      dot.style.left = `${Math.random()*99}%`;
+      dot.style.top = `${Math.random()*90}%`;
+      dot.style.background = randomColor();
+      dot.style.animationDuration = `${12+Math.random()*8}s`;
+      bg.appendChild(dot);
     }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+  }
+  createDots();
 
-    // Holo-cyber grid animation
-    function drawGrid(time) {
-      ctx.clearRect(0, 0, w, h);
-      ctx.save();
-      // Fade layer
-      ctx.globalAlpha = 0.7;
-      ctx.fillStyle = "#090015";
-      ctx.fillRect(0, 0, w, h);
+  // Util: Copy
+  function copyCode(id) {
+    const el = document.getElementById(id);
+    el.select();
+    document.execCommand('copy');
+    el.blur();
+    flashBtn(event.target, 'Copied!');
+  }
+  // Util: Download
+  function downloadCode(id) {
+    const code = document.getElementById(id).value;
+    if(!code.trim()) return flashBtn(event.target, 'Nothing to download');
+    let ext = 'txt';
+    if(code.trim().startsWith('<')) ext = 'html';
+    else if(code.trim().startsWith('function') || code.trim().includes('=>')) ext = 'js';
+    const blob = new Blob([code], {type:'text/plain'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `pkdriller-result.${ext}`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+  // Util: Upload
+  function uploadFile(codeAreaId) {
+    const input = document.getElementById('fileInput');
+    input.onchange = (e) => {
+      const file = e.target.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        document.getElementById(codeAreaId).value = ev.target.result;
+      };
+      reader.readAsText(file);
+    };
+    input.value = '';
+    input.click();
+  }
+  // Util: Clear
+  function clearCode(id) {
+    document.getElementById(id).value = '';
+  }
+  // Button Feedback
+  function flashBtn(btn, text) {
+    const orig = btn.innerHTML;
+    btn.innerHTML = `<i class="fas fa-check"></i> ${text}`;
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.disabled = false;
+    }, 1200);
+  }
 
-      // Grid lines
-      let spacing = 44, t = time / 1200;
-      for (let x = 0; x < w; x += spacing) {
-        ctx.strokeStyle = `rgba(57,255,20,${0.16 + 0.08*Math.sin(t + x/100)})`;
-        ctx.shadowColor = "#ff00de";
-        ctx.shadowBlur = 10;
-        ctx.beginPath();
-        ctx.moveTo(x + 8*Math.sin(t + x*0.03), 0);
-        ctx.lineTo(x + 8*Math.cos(t + x*0.07), h);
-        ctx.stroke();
-      }
-      for (let y = 0; y < h; y += spacing) {
-        ctx.strokeStyle = `rgba(255,0,222,${0.11 + 0.12*Math.cos(t + y/90)})`;
-        ctx.shadowColor = "#39ff14";
-        ctx.shadowBlur = 8;
-        ctx.beginPath();
-        ctx.moveTo(0, y + 6*Math.sin(t + y*0.05));
-        ctx.lineTo(w, y + 6*Math.cos(t + y*0.01));
-        ctx.stroke();
-      }
-      // Dots
-      for(let i=0; i<60; i++) {
-        let gx = (i*spacing + 32 + (20*Math.sin(t/2+i)))%w;
-        let gy = ((i*spacing*0.7) + 19 + (30*Math.cos(t/3-i)))%h;
-        ctx.beginPath();
-        ctx.arc(gx, gy, 3 + Math.sin(time/300 + i)*2, 0, Math.PI*2);
-        ctx.fillStyle = `rgba(255,7,58,${0.5+0.5*Math.sin(t+i)})`;
-        ctx.shadowColor = "#ff00de";
-        ctx.shadowBlur = 12;
-        ctx.fill();
-      }
-      ctx.restore();
-      requestAnimationFrame(drawGrid);
-    }
-    requestAnimationFrame(drawGrid);
-  </script>
-
-  <!-- Main JS for obfuscation/deobfuscation -->
-  <script>
-    // Simple JavaScript obfuscation using String.fromCharCode
-    function obfuscateJS() {
-      const code = document.getElementById('inputCode').value;
-      if(!code.trim()) return alert("Please enter JavaScript code to obfuscate!");
-      let charCodes = [];
-      for (let i = 0; i < code.length; i++) charCodes.push(code.charCodeAt(i));
-      let result = `eval(String.fromCharCode(${charCodes.join(',')}))`;
-      document.getElementById('outputCode').value = result;
-    }
-
-    // Simple deobfuscation for String.fromCharCode-based obfuscation
-    function deobfuscateJS() {
-      const code = document.getElementById('inputCode').value.trim();
-      let match = code.match(/fromCharCode\s*\(([\d\s,]+)\)/);
-      if (!match) {
-        alert("Could not find a recognizable 'fromCharCode' pattern. Only supports basic obfuscation reversal.");
-        return;
-      }
-      let charCodes = match[1].split(',').map(s => String.fromCharCode(parseInt(s)));
-      let result = charCodes.join('');
-      document.getElementById('outputCode').value = result;
-    }
-
-    // HTML Obfuscation: Base64 encode with data URI
-    function obfuscateHTML() {
-      const code = document.getElementById('inputCode').value;
-      if(!code.trim()) return alert("Please enter HTML code to obfuscate!");
-      let b64 = btoa(unescape(encodeURIComponent(code)));
-      let result = `<iframe src="data:text/html;base64,${b64}" style="width:100%;height:100%;border:none;"></iframe>`;
-      document.getElementById('outputCode').value = result;
-    }
-
-    // HTML Deobfuscation: Extract and decode base64 from data URI
-    function deobfuscateHTML() {
-      const code = document.getElementById('inputCode').value.trim();
-      let match = code.match(/src=["']data:text\/html;base64,([^"']+)["']/);
-      if (!match) {
-        alert("Could not find a recognizable base64 HTML pattern. Only supports basic reversal.");
-        return;
-      }
-      let decoded = decodeURIComponent(escape(atob(match[1])));
-      document.getElementById('outputCode').value = decoded;
-    }
-
-    function clearAll() {
-      document.getElementById('inputCode').value = '';
-      document.getElementById('outputCode').value = '';
-    }
-
-    function copyResult() {
-      const output = document.getElementById('outputCode');
-      if(!output.value) return;
-      output.select();
-      document.execCommand('copy');
-      output.setSelectionRange(0,0);
-      alert('Result copied to clipboard!');
-    }
-  </script>
+  // Obfuscate JS
+  function obfuscateJS() {
+    const code = document.getElementById('inputCode').value;
+    if(!code.trim()) return;
+    // Simple (not bulletproof) JS obfuscation: Unicode escape, variable mangling, whitespace removal
+    let res = code.replace(/([a-zA-Z_]\w*)/g, (m, v) => {
+      if(['if','else','for','while','function','return','let','const','var','switch','case','break','continue','do','try','catch','finally','typeof','instanceof','new','this','class','extends','constructor','super','import','export','from','default','null','undefined','true','false','in','of'].includes(v)) return v;
+      return '_' + btoa(v).replace(/=+$/,'').replace(/\+/g,'a').replace(/\//g,'b');
+    });
+    res = res.replace(/\s+/g,' ');
+    res = res.replace(/(["'`])([\s\S]*?)\1/g, function(m, q, s) {
+      return q + Array.from(s).map(c=> '\\u'+('000'+c.charCodeAt(0).toString(16)).slice(-4)).join('') + q;
+    });
+    document.getElementById('outputCode').value = res;
+  }
+  // Deobfuscate JS (best effort)
+  function deobfuscateJS() {
+    let code = document.getElementById('inputCode').value;
+    if(!code.trim()) return;
+    // Reverse unicode escapes in strings
+    code = code.replace(/(["'`])((?:\\u[0-9a-fA-F]{4})+)\1/g, function(m,q,s){
+      return q+s.replace(/\\u([0-9a-fA-F]{4})/g,(m,c)=>String.fromCharCode(parseInt(c,16)))+q;
+    });
+    // Reverse variable mangling
+    code = code.replace(/_([A-Za-z0-9ab]+)/g, (m,b) => {
+      b = b.replace(/a/g,'+').replace(/b/g,'/');
+      try { return atob(b); } catch { return m; }
+    });
+    // Format code (indent, add newlines after ; and { and })
+    code = code.replace(/;/g, ';\n').replace(/{/g, '{\n').replace(/}/g, '\n}\n');
+    document.getElementById('outputCode').value = code;
+  }
+  // Obfuscate HTML (simple: encode chars + scramble tags)
+  function obfuscateHTML() {
+    let code = document.getElementById('inputCode').value;
+    if(!code.trim()) return;
+    // Replace tag names with random 3-letter codes, encode chars
+    let tagMap = {};
+    code = code.replace(/<\/?([a-zA-Z][a-zA-Z0-9-]*)/g, (m,tag) => {
+      if(!tagMap[tag]) tagMap[tag] = Array(3).fill(0).map(()=>String.fromCharCode(97+Math.floor(Math.random()*26))).join('');
+      return m.replace(tag, tagMap[tag]);
+    });
+    // Encode non-tag content to HTML entities
+    code = code.replace(/>([^<]+)/g, (m,txt) => '>' + txt.replace(/./g,c=>'&#'+c.charCodeAt(0)+';'));
+    document.getElementById('outputCode').value = code;
+  }
+  // Deobfuscate HTML (best effort)
+  function deobfuscateHTML() {
+    let code = document.getElementById('inputCode').value;
+    if(!code.trim()) return;
+    // Decode HTML entities
+    code = code.replace(/&#(\d+);/g, (m,n) => String.fromCharCode(Number(n)));
+    // Try to recover tag names (not always possible)
+    // User will need to edit back tag names if mapping is lost
+    document.getElementById('outputCode').value = code;
+  }
+</script>
 </body>
-</html>
+      </html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PKDriller Codes Protector</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts for Cyber/Hacker Style -->
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@800&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    :root {
+      --cyber-green: #39ff14;
+      --cyber-pink: #ff00c8;
+      --cyber-red: #ff1744;
+      --cyber-bg1: #131313;
+      --cyber-bg2: #222;
+      --cyber-shadow: 0 0 20px #39ff14, 0 0 40px #ff00c8, 0 0 80px #ff1744;
+      --cyber-glass: rgba(25, 25, 35, 0.8);
+      --cyber-border: 2px solid #39ff14;
+      --cyber-corner: 16px;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #0a0a0f 0%, #1a1a2e 100%);
+      font-family: 'Share Tech Mono', 'Orbitron', monospace;
+      color: #f3f3f3;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body {
+      position: relative;
+      min-height: 100vh;
+    }
+    /* Holographic/Cybernetic Background Animation */
+    .background-anim {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: 0.5;
+    }
+    .cyber-dot {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.7;
+      filter: blur(3px);
+      animation: moveDot 16s linear infinite alternate;
+    }
+    @keyframes moveDot {
+      0% { transform: translateY(0) scale(1);}
+      100% { transform: translateY(80vh) scale(1.5);}
+    }
+    /* Main Container */
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 16px 48px 16px;
+      background: var(--cyber-glass);
+      box-shadow: 0 0 30px #0ff, 0 0 80px #f0f;
+      border-radius: var(--cyber-corner);
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+    h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: 2.8rem;
+      color: var(--cyber-green);
+      text-shadow: 0 0 20px var(--cyber-green), 0 0 30px var(--cyber-pink);
+      text-align: center;
+      margin-bottom: 0;
+      letter-spacing: 3px;
+    }
+    h2 {
+      color: var(--cyber-pink);
+      text-shadow: 0 0 10px var(--cyber-pink), 0 0 20px var(--cyber-red);
+      margin-top: 2.5rem;
+      font-size: 2rem;
+      letter-spacing: 2px;
+    }
+    .desc {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #cfc;
+      margin-bottom: 2.5rem;
+      text-shadow: 0 0 10px var(--cyber-green);
+    }
+    /* Code Areas */
+    .code-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: space-between;
+      margin-bottom: 42px;
+    }
+    .code-box {
+      flex: 1 1 420px;
+      display: flex;
+      flex-direction: column;
+      background: var(--cyber-bg2);
+      border-radius: var(--cyber-corner);
+      border: var(--cyber-border);
+      box-shadow: 0 0 20px var(--cyber-pink);
+      padding: 24px 16px;
+      min-width: 320px;
+      margin-bottom: 24px;
+    }
+    .code-box label {
+      font-size: 1.1rem;
+      color: var(--cyber-green);
+      margin-bottom: 12px;
+      text-shadow: 0 0 8px var(--cyber-green);
+    }
+    .code-area {
+      width: 100%;
+      min-height: 180px;
+      background: #181824;
+      color: #fff;
+      font-size: 1.06rem;
+      font-family: 'Share Tech Mono', monospace;
+      border: var(--cyber-border);
+      border-radius: 9px;
+      margin-bottom: 14px;
+      padding: 12px;
+      resize: vertical;
+      box-shadow: 0 0 12px #0f0;
+      outline: none;
+      transition: box-shadow 0.2s;
+    }
+    .code-area:focus {
+      box-shadow: 0 0 24px var(--cyber-pink);
+    }
+    /* Buttons */
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .cyber-btn {
+      background: linear-gradient(120deg, var(--cyber-green), var(--cyber-pink), var(--cyber-red));
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      padding: 10px 22px;
+      font-size: 1.1rem;
+      font-family: 'Orbitron', monospace;
+      cursor: pointer;
+      box-shadow: 0 0 16px var(--cyber-green), 0 0 24px var(--cyber-pink);
+      transition: background 0.2s, transform 0.15s;
+      text-shadow: 0 0 8px #fff, 0 0 10px #0f0;
+      outline: none;
+      letter-spacing: 2px;
+    }
+    .cyber-btn:active {
+      transform: scale(0.97);
+      background: linear-gradient(120deg, var(--cyber-red), var(--cyber-green), var(--cyber-pink));
+    }
+    .cyber-btn i {
+      margin-right: 7px;
+    }
+    /* Social Buttons */
+    .social-row {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      margin: 2.5rem 0 1rem 0;
+      flex-wrap: wrap;
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(90deg, #25d366 0%, #39ff14 50%, #ff00c8 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 22px;
+      font-size: 1.05rem;
+      font-family: 'Orbitron', monospace;
+      font-weight: bold;
+      box-shadow: 0 0 20px #25d366, 0 0 14px #ff00c8;
+      cursor: pointer;
+      letter-spacing: 2px;
+      text-decoration: none;
+      text-shadow: 0 0 10px #fff, 0 0 10px #39ff14;
+      transition: background 0.18s;
+    }
+    .social-btn.github {
+      background: linear-gradient(90deg, #ff00c8 0%, #222 80%);
+      box-shadow: 0 0 20px #ff00c8, 0 0 10px #fff;
+    }
+    .social-btn:active {
+      filter: brightness(1.08);
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .code-section { flex-direction: column; }
+      .container { padding: 24px 4px; }
+    }
+    @media (max-width: 600px) {
+      .code-area { min-height: 110px; font-size: 1rem; }
+      h1 { font-size: 2rem; }
+      .container { margin-top: 10px; margin-bottom: 10px; }
+    }
+    /* Footer */
+    .footer {
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(90deg, #111 0%, #1a1a2e 100%);
+      padding: 16px 0 12px 0;
+      font-size: 1.04rem;
+      letter-spacing: 1px;
+      border-radius: var(--cyber-corner);
+      box-shadow: 0 0 10px #0f0, 0 0 20px #f0f;
+      margin: 24px 0 0 0;
+    }
+    .footer span {
+      color: var(--cyber-pink);
+      font-family: 'Orbitron', monospace;
+    }
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      background: #232;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #0f0;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="background-anim" id="bg-anim"></div>
+  <div class="container">
+    <h1><i class="fas fa-shield-halved"></i> PKDriller Codes Protector</h1>
+    <div class="desc">
+      Obfuscate &amp; deobfuscate JavaScript and HTML with cybernetic protection.<br>
+      <span style="color:var(--cyber-pink);">Fast, luminous, and futuristic.</span>
+    </div>
+    <div class="code-section">
+      <!-- Input Code Box -->
+      <div class="code-box">
+        <label for="inputCode">Your Code (JavaScript / HTML):</label>
+        <textarea id="inputCode" class="code-area" placeholder="Paste your code here..."></textarea>
+        <div class="btn-row">
+          <button class="cyber-btn" onclick="uploadFile('inputCode')">
+            <i class="fas fa-upload"></i> Upload File
+          </button>
+          <button class="cyber-btn" onclick="clearCode('inputCode')">
+            <i class="fas fa-eraser"></i> Clear
+          </button>
+        </div>
+        <input type="file" id="fileInput" style="display:none" accept=".js,.html,.txt,.json">
+      </div>
+      <!-- Output Code Box -->
+      <div class="code-box">
+        <label for="outputCode">Result:</label>
+        <textarea id="outputCode" class="code-area" placeholder="Output will appear here..." readonly></textarea>
+        <div class="btn-row">
+          <button class="cyber-btn" onclick="downloadCode('outputCode')">
+            <i class="fas fa-download"></i> Download Result
+          </button>
+          <button class="cyber-btn" onclick="copyCode('outputCode')">
+            <i class="fas fa-copy"></i> Copy
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Obfuscate / Deobfuscate Buttons -->
+    <div class="btn-row" style="justify-content:center; margin-bottom:32px;">
+      <button class="cyber-btn" onclick="obfuscateJS()">
+        <i class="fa-solid fa-lock"></i> Obfuscate JavaScript
+      </button>
+      <button class="cyber-btn" onclick="deobfuscateJS()">
+        <i class="fa-solid fa-unlock"></i> Deobfuscate JavaScript
+      </button>
+      <button class="cyber-btn" onclick="obfuscateHTML()">
+        <i class="fa-solid fa-lock"></i> Obfuscate HTML
+      </button>
+      <button class="cyber-btn" onclick="deobfuscateHTML()">
+        <i class="fa-solid fa-unlock"></i> Deobfuscate HTML
+      </button>
+    </div>
+    <!-- Follow Buttons -->
+    <div class="social-row">
+      <a class="social-btn" href="https://whatsapp.com/channel/0029Vad7YNyJuyA77CtIPX0x" target="_blank">
+        <i class="fab fa-whatsapp"></i> Follow Whatsapp Channel
+      </a>
+      <a class="social-btn github" href="https://github.com/Pkdriller" target="_blank">
+        <i class="fab fa-github"></i> Follow me on GitHub
+      </a>
+    </div>
+    <!-- Instructions -->
+    <h2>How it works</h2>
+    <ul style="font-size:1.08rem; color:#fff;">
+      <li>Paste or upload your JavaScript/HTML code.</li>
+      <li>Select the desired action: obfuscate or deobfuscate.</li>
+      <li>Copy or download the result, all in your browser.</li>
+      <li>No code leaves your device. <span style="color:var(--cyber-green);">100% client-side.</span></li>
+    </ul>
+    <!-- Tech Note -->
+    <div style="margin-top:2rem; color:var(--cyber-pink); font-family:'Orbitron',sans-serif; font-size:1.18rem; text-align:center;">
+      <i class="fa-solid fa-microchip"></i> Powered by high-tech browser algorithms, holographic cyber style, and luminous hacker colors!
+    </div>
+  </div>
+  <div class="footer">
+    &copy; <span>PKDriller</span> Codes Protector · All Rights Reserved · <span>2025</span>
+  </div>
+<script>
+  // Live Holographic Background Animation
+  function randomColor() {
+    const colors = ['#39ff14', '#ff00c8', '#ff1744', '#0ff', '#f0f', '#25d366'];
+    return colors[Math.floor(Math.random()*colors.length)];
+  }
+  function createDots() {
+    const bg = document.getElementById('bg-anim');
+    for(let i=0;i<18;i++) {
+      const dot = document.createElement('div');
+      dot.className = 'cyber-dot';
+      dot.style.width = dot.style.height = `${Math.random()*60+24}px`;
+      dot.style.left = `${Math.random()*99}%`;
+      dot.style.top = `${Math.random()*90}%`;
+      dot.style.background = randomColor();
+      dot.style.animationDuration = `${12+Math.random()*8}s`;
+      bg.appendChild(dot);
+    }
+  }
+  createDots();
+
+  // Util: Copy
+  function copyCode(id) {
+    const el = document.getElementById(id);
+    el.select();
+    document.execCommand('copy');
+    el.blur();
+    flashBtn(event.target, 'Copied!');
+  }
+  // Util: Download
+  function downloadCode(id) {
+    const code = document.getElementById(id).value;
+    if(!code.trim()) return flashBtn(event.target, 'Nothing to download');
+    let ext = 'txt';
+    if(code.trim().startsWith('<')) ext = 'html';
+    else if(code.trim().startsWith('function') || code.trim().includes('=>')) ext = 'js';
+    const blob = new Blob([code], {type:'text/plain'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `pkdriller-result.${ext}`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+  // Util: Upload
+  function uploadFile(codeAreaId) {
+    const input = document.getElementById('fileInput');
+    input.onchange = (e) => {
+      const file = e.target.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        document.getElementById(codeAreaId).value = ev.target.result;
+      };
+      reader.readAsText(file);
+    };
+    input.value = '';
+    input.click();
+  }
+  // Util: Clear
+  function clearCode(id) {
+    document.getElementById(id).value = '';
+  }
+  // Button Feedback
+  function flashBtn(btn, text) {
+    const orig = btn.innerHTML;
+    btn.innerHTML = `<i class="fas fa-check"></i> ${text}`;
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.disabled = false;
+    }, 1200);
+  }
+
+  // Obfuscate JS
+  function obfuscateJS() {
+    const code = document.getElementById('inputCode').value;
+    if(!code.trim()) return;
+    // Simple (not bulletproof) JS obfuscation: Unicode escape, variable mangling, whitespace removal
+    let res = code.replace(/([a-zA-Z_]\w*)/g, (m, v) => {
+      if(['if','else','for','while','function','return','let','const','var','switch','case','break','continue','do','try','catch','finally','typeof','instanceof','new','this','class','extends','constructor','super','import','export','from','default','null','undefined','true','false','in','of'].includes(v)) return v;
+      return '_' + btoa(v).replace(/=+$/,'').replace(/\+/g,'a').replace(/\//g,'b');
+    });
+    res = res.replace(/\s+/g,' ');
+    res = res.replace(/(["'`])([\s\S]*?)\1/g, function(m, q, s) {
+      return q + Array.from(s).map(c=> '\\u'+('000'+c.charCodeAt(0).toString(16)).slice(-4)).join('') + q;
+    });
+    document.getElementById('outputCode').value = res;
+  }
+  // Deobfuscate JS (best effort)
+  function deobfuscateJS() {
+    let code = document.getElementById('inputCode').value;
+    if(!code.trim()) return;
+    // Reverse unicode escapes in strings
+    code = code.replace(/(["'`])((?:\\u[0-9a-fA-F]{4})+)\1/g, function(m,q,s){
+      return q+s.replace(/\\u([0-9a-fA-F]{4})/g,(m,c)=>String.fromCharCode(parseInt(c,16)))+q;
+    });
+    // Reverse variable mangling
+    code = code.replace(/_([A-Za-z0-9ab]+)/g, (m,b) => {
+      b = b.replace(/a/g,'+').replace(/b/g,'/');
+      try { return atob(b); } catch { return m; }
+    });
+    // Format code (indent, add newlines after ; and { and })
+    code = code.replace(/;/g, ';\n').replace(/{/g, '{\n').replace(/}/g, '\n}\n');
+    document.getElementById('outputCode').value = code;
+  }
+  // Obfuscate HTML (simple: encode chars + scramble tags)
+  function obfuscateHTML() {
+    let code = document.getElementById('inputCode').value;
+    if(!code.trim()) return;
+    // Replace tag names with random 3-letter codes, encode chars
+    let tagMap = {};
+    code = code.replace(/<\/?([a-zA-Z][a-zA-Z0-9-]*)/g, (m,tag) => {
+      if(!tagMap[tag]) tagMap[tag] = Array(3).fill(0).map(()=>String.fromCharCode(97+Math.floor(Math.random()*26))).join('');
+      return m.replace(tag, tagMap[tag]);
+    });
+    // Encode non-tag content to HTML entities
+    code = code.replace(/>([^<]+)/g, (m,txt) => '>' + txt.replace(/./g,c=>'&#'+c.charCodeAt(0)+';'));
+    document.getElementById('outputCode').value = code;
+  }
+  // Deobfuscate HTML (best effort)
+  function deobfuscateHTML() {
+    let code = document.getElementById('inputCode').value;
+    if(!code.trim()) return;
+    // Decode HTML entities
+    code = code.replace(/&#(\d+);/g, (m,n) => String.fromCharCode(Number(n)));
+    // Try to recover tag names (not always possible)
+    // User will need to edit back tag names if mapping is lost
+    document.getElementById('outputCode').value = code;
+  }
+</script>
+</body>
+  </html>
