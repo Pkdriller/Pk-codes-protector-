@@ -4,335 +4,347 @@
   <meta charset="UTF-8">
   <title>Pkdriller Codes Protector</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Neon cyberpunk/cybernetic theme fonts & icons -->
-  <link href="https://fonts.googleapis.com/css?family=Orbitron:700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <!-- Cybernetic & Holographic styles -->
   <style>
-    /* Live background - animated cybernetic grid */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+    :root {
+      --neon-green: #39ff14;
+      --neon-pink: #ff00de;
+      --neon-red: #ff073a;
+      --bg-dark: #14001a;
+      --panel-dark: #231033cc;
+      --border-neon: 0 0 10px var(--neon-green), 0 0 40px var(--neon-pink), 0 0 80px var(--neon-red);
+      --shadow-halo: 0 0 8px var(--neon-green), 0 0 10px var(--neon-pink);
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
+      font-family: 'Orbitron', 'Consolas', 'Courier New', monospace;
+      background: linear-gradient(120deg, #21002c 0%, #000d1a 100%);
+      color: var(--neon-green);
       overflow: hidden;
-      background: #0f0e1b;
-      font-family: 'Share Tech Mono', monospace;
-      color: #fff;
     }
-    #cyber-bg {
+
+    /* Holographic cyber grid animation */
+    #live-bg {
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      top: 0; left: 0; width: 100vw; height: 100vh;
       z-index: 0;
       pointer-events: none;
     }
+
     .container {
       position: relative;
-      z-index: 1;
-      max-width: 800px;
-      margin: 60px auto 40px auto;
-      background: rgba(25, 22, 44, 0.85);
-      border: 2px solid #00ffea;
+      z-index: 2;
+      max-width: 920px;
+      margin: 50px auto;
+      background: var(--panel-dark);
       border-radius: 20px;
-      box-shadow: 0 0 32px #00ffea77, 0 0 16px #ff008070;
-      padding: 36px 24px;
-      backdrop-filter: blur(6px);
+      box-shadow: 0 0 40px var(--neon-pink), 0 0 20px var(--neon-green);
+      padding: 2.5rem 2rem 2rem 2rem;
+      border: 2px solid var(--neon-green);
+      backdrop-filter: blur(10px);
     }
-    .title {
-      font-family: 'Orbitron', monospace;
+
+    h1 {
       text-align: center;
-      font-size: 2.5em;
-      margin-bottom: 5px;
+      font-size: 2.5rem;
       letter-spacing: 2px;
-      color: #00ffea;
-      text-shadow: 0 0 20px #ff08c7, 0 0 40px #00ffea;
-      user-select: none;
+      color: var(--neon-pink);
+      text-shadow: 0 0 12px var(--neon-green), 0 0 4px var(--neon-red);
+      margin-bottom: 0.5em;
     }
+
     .subtitle {
       text-align: center;
-      font-size: 1.2em;
-      letter-spacing: 1px;
-      color: #ff08c7;
-      margin-bottom: 24px;
-      text-shadow: 0 0 8px #ff08c7;
+      color: var(--neon-green);
+      margin-bottom: 2em;
+      font-size: 1.1rem;
+      text-shadow: 0 0 8px var(--neon-pink);
     }
-    .controls {
+
+    .flex-area {
       display: flex;
+      gap: 1.5rem;
       flex-wrap: wrap;
-      gap: 16px;
       justify-content: center;
-      margin-bottom: 16px;
     }
-    textarea {
-      width: 100%;
-      min-height: 100px;
-      border: 2px solid #00ffea;
-      border-radius: 8px;
-      background: rgba(17, 9, 36, 0.95);
-      color: #00ffea;
-      font-size: 1.1em;
-      padding: 12px;
-      resize: vertical;
-      margin-bottom: 14px;
-      box-shadow: 0 0 15px #25ff63a0 inset;
-      font-family: 'Share Tech Mono', monospace;
-      transition: border 0.2s;
-    }
-    textarea:focus {
-      outline: none;
-      border: 2px solid #ff08c7;
-      box-shadow: 0 0 15px #ff08c7a0 inset;
-      background: rgba(0,0,0,0.97);
-    }
-    .button {
-      background: linear-gradient(90deg,#14ff42 0,#ff08c7 100%);
-      color: #fff;
-      font-family: 'Orbitron', monospace;
-      font-size: 1.1em;
-      border: none;
-      border-radius: 8px;
-      padding: 12px 26px;
-      margin: 6px 4px;
-      box-shadow: 0 0 18px #00ffea, 0 0 8px #ff08c7;
-      cursor: pointer;
-      text-shadow: 0 0 8px #00ffea, 0 0 12px #ff08c7;
-      transition: background 0.2s, box-shadow 0.2s;
-    }
-    .button:hover {
-      background: linear-gradient(90deg,#ff08c7 0,#14ff42 100%);
-      box-shadow: 0 0 28px #ff08c7, 0 0 16px #14ff42;
-    }
-    .output-label {
-      font-size: 1em;
-      color: #14ff42;
-      margin-top: 8px;
-      text-shadow: 0 0 8px #14ff42;
-    }
-    .socials {
+
+    .panel {
+      flex: 1 1 350px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      margin-top: 30px;
-      gap: 12px;
+      background: #2c003d66;
+      border-radius: 14px;
+      box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-pink);
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      min-width: 320px;
+      border: 1.5px solid var(--neon-pink);
+    }
+
+    textarea {
+      background: #1a0033e6;
+      color: var(--neon-green);
+      border: 2px solid var(--neon-red);
+      border-radius: 9px;
+      font-size: 1rem;
+      padding: 1em;
+      resize: vertical;
+      min-height: 150px;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      box-shadow: 0 0 14px var(--neon-pink);
+      outline: none;
+      transition: border .2s;
+    }
+
+    textarea:focus {
+      border: 2.5px solid var(--neon-green);
+      box-shadow: 0 0 25px var(--neon-green);
+    }
+
+    .btn-group {
+      margin: 1em 0 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+      justify-content: center;
+    }
+
+    .btn {
+      background: linear-gradient(90deg, var(--neon-green) 0%, var(--neon-pink) 100%);
+      color: #000;
+      font-family: 'Orbitron', monospace;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      padding: 0.7em 1.8em;
+      cursor: pointer;
+      box-shadow: 0 0 8px var(--neon-green), 0 0 12px var(--neon-pink);
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px var(--neon-red);
+      transition: transform 0.1s, box-shadow 0.2s;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+      box-shadow: 0 0 24px var(--neon-red);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 2em;
+      color: var(--neon-green);
+      font-size: 1rem;
+      text-shadow: 0 0 8px var(--neon-pink);
+    }
+    .social-btns {
+      display: flex;
+      justify-content: center;
+      gap: 1.2em;
+      margin: 1.5em 0 0 0;
     }
     .social-btn {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 1.13em;
-      font-family: 'Orbitron', monospace;
-      background: linear-gradient(90deg, #25ff63 0, #ff0059 100%);
+      gap: 0.5em;
+      background: linear-gradient(90deg, var(--neon-pink), var(--neon-green), var(--neon-red));
       color: #fff;
-      border: none;
-      border-radius: 50px;
-      padding: 11px 28px;
+      padding: 0.65em 1.5em;
+      border-radius: 12px;
+      font-size: 1.05em;
+      font-weight: bold;
       text-decoration: none;
-      box-shadow: 0 0 18px #25ff63, 0 0 14px #ff0080;
-      margin: 0 4px;
+      box-shadow: 0 0 8px var(--neon-red), 0 0 14px var(--neon-green);
+      border: none;
       transition: background 0.2s, box-shadow 0.2s;
-      text-shadow: 0 0 8px #fff, 0 0 10px #14ff42;
+      outline: none;
     }
     .social-btn:hover {
-      background: linear-gradient(90deg, #ff0059 0, #25ff63 100%);
-      box-shadow: 0 0 28px #ff0080, 0 0 20px #25ff63;
+      background: linear-gradient(90deg, var(--neon-green), var(--neon-red), var(--neon-pink));
+      box-shadow: 0 0 22px var(--neon-pink);
+      color: #000;
     }
-    @media (max-width: 600px) {
-      .container { padding: 16px 4vw; }
-      .title { font-size: 1.5em; }
-      .subtitle { font-size: 1em;}
-      .button, .social-btn { font-size: 0.98em; padding: 8px 10px;}
+    .social-btn svg {
+      width: 1.3em; height: 1.3em;
+      filter: drop-shadow(0 0 4px var(--neon-green));
     }
-    /* Holographic glowing lines */
-    .holo-line {
-      width: 90%;
-      height: 3px;
-      margin: 24px auto 18px auto;
-      background: linear-gradient(90deg, #ff08c7 0%, #00ffea 50%, #25ff63 100%);
-      box-shadow: 0 0 18px #00ffea, 0 0 18px #ff08c7;
-      opacity: 0.7;
-      border-radius: 8px;
-      filter: blur(0.3px);
+    @media (max-width: 900px) {
+      .container { margin: 15px; }
+      .flex-area { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-<canvas id="cyber-bg"></canvas>
-<div class="container">
-  <div class="title">Pkdriller Codes Protector</div>
-  <div class="subtitle">Obfuscate &amp; Deobfuscate JavaScript or HTML &mdash; Cybernetic Hologram Style</div>
-  <div class="holo-line"></div>
-  <label for="inputCode" class="output-label">Paste your code (JavaScript or HTML):</label>
-  <textarea id="inputCode" placeholder="Paste your code here..."></textarea>
-  <div class="controls">
-    <button class="button" onclick="obfuscateJS()">Obfuscate JS</button>
-    <button class="button" onclick="deobfuscateJS()">Deobfuscate JS</button>
-    <button class="button" onclick="obfuscateHTML()">Obfuscate HTML</button>
-    <button class="button" onclick="deobfuscateHTML()">Deobfuscate HTML</button>
-    <button class="button" onclick="copyOutput()">Copy Output</button>
-    <button class="button" onclick="clearFields()">Clear</button>
-  </div>
-  <label for="outputCode" class="output-label">Output:</label>
-  <textarea id="outputCode" readonly placeholder="Your result will appear here..."></textarea>
-  <div class="holo-line"></div>
-  <div class="socials">
-    <a class="social-btn" href="https://whatsapp.com/channel/0029Vad7YNyJuyA77CtIPX0x" target="_blank">
-      <svg width="24" height="24" fill="#25ff63" viewBox="0 0 24 24" style="vertical-align:middle;"><path d="M12.04 2.001c-5.528 0-10.019 4.489-10.019 10.016 0 1.77.464 3.495 1.341 5.016l-1.425 5.205 5.341-1.396c1.492.812 3.152 1.24 4.762 1.24h.001c5.527 0 10.017-4.488 10.017-10.016s-4.49-10.016-10.018-10.016zm5.788 15.057c-.242.682-1.417 1.341-1.936 1.428-.521.088-1.211.125-1.953-.12-.45-.143-1.026-.334-1.783-.656-3.142-1.355-5.195-4.526-5.355-4.749-.159-.223-1.279-1.702-1.279-3.247 0-1.546.813-2.304 1.104-2.62.29-.316.635-.395.847-.395.212 0 .424.002.609.011.197.009.458-.074.719.548.242.582.822 2.018.896 2.167.073.15.123.325.024.524-.098.198-.148.32-.292.495-.145.175-.304.39-.434.526-.145.15-.297.314-.127.617.171.303.76 1.253 1.632 2.031 1.119.997 2.064 1.311 2.366 1.459.303.148.479.124.656-.074.175-.198.75-.875.949-1.175.197-.3.398-.25.672-.15.274.099 1.738.82 2.036.971.299.15.498.223.572.346.073.124.073.713-.169 1.395z"/></svg>
-      Follow Whatsapp Channel
-    </a>
-    <a class="social-btn" href="https://github.com/Pkdriller" target="_blank">
-      <svg width="22" height="22" fill="#ff08c7" viewBox="0 0 24 24" style="vertical-align:middle;"><path d="M12 .296c-6.627 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.387.6.111.82-.261.82-.577v-2.234c-3.338.726-4.033-1.415-4.033-1.415-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.997.108-.775.419-1.305.762-1.605-2.665-.303-5.467-1.334-5.467-5.931 0-1.311.469-2.382 1.236-3.221-.124-.304-.535-1.527.117-3.176 0 0 1.008-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.289-1.553 3.295-1.23 3.295-1.23.653 1.649.242 2.872.119 3.176.77.839 1.236 1.91 1.236 3.221 0 4.609-2.807 5.625-5.479 5.921.43.371.814 1.103.814 2.222v3.293c0 .319.216.694.825.576 4.765-1.588 8.199-6.085 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-      Follow on GitHub
-    </a>
-  </div>
-</div>
-<script>
-/* --- Live Cybernetic Grid Background --- */
-const canvas = document.getElementById('cyber-bg');
-const ctx = canvas.getContext('2d');
-let w = window.innerWidth, h = window.innerHeight;
-function resizeCanvas() {
-  canvas.width = w = window.innerWidth;
-  canvas.height = h = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-function drawGrid(time) {
-  ctx.clearRect(0, 0, w, h);
-  const spacing = 60;
-  const lines = Math.ceil(Math.max(w, h) / spacing) + 2;
-  ctx.save();
-  for(let i = 0; i < lines; ++i) {
-    let alpha = .35 + .2*Math.sin((time/400+i)*1.4);
-    // Vertical lines
-    ctx.strokeStyle = `rgba(20,255,66,${alpha})`;
-    ctx.shadowColor = '#00ffea';
-    ctx.shadowBlur = 10;
-    ctx.beginPath();
-    ctx.moveTo(i*spacing + (time/15)%spacing, 0);
-    ctx.lineTo(i*spacing + (time/15)%spacing, h);
-    ctx.stroke();
-    // Horizontal lines
-    ctx.strokeStyle = `rgba(255,8,199,${alpha})`;
-    ctx.shadowColor = '#ff08c7';
-    ctx.shadowBlur = 7;
-    ctx.beginPath();
-    ctx.moveTo(0, i*spacing + (time/11)%spacing);
-    ctx.lineTo(w, i*spacing + (time/11)%spacing);
-    ctx.stroke();
-  }
-  // Moving points
-  for(let i=0;i<32;++i){
-    const x = (w/2) + Math.sin(time/300 + i*0.33)*w*0.36 + Math.sin(time/170 + i*2)*32;
-    const y = (h/2) + Math.sin(time/500 + i*0.29)*h*0.24 + Math.cos(time/140 + i*1.5)*22;
-    ctx.beginPath();
-    ctx.arc(x, y, 2.9+Math.sin(time/80+i)*1.7, 0, 2*Math.PI);
-    ctx.fillStyle = `rgba(0,255,234,0.4)`;
-    ctx.shadowColor = '#ff08c7';
-    ctx.shadowBlur = 16;
-    ctx.fill();
-  }
-  ctx.restore();
-}
-function animateBG(time) {
-  drawGrid(time);
-  requestAnimationFrame(animateBG);
-}
-animateBG(0);
+  <!-- Live cyber grid background -->
+  <canvas id="live-bg"></canvas>
 
-/* --- Obfuscation & Deobfuscation Logic --- */
-// Simple JS obfuscator using unicode escapes & hex encoding
-function obfuscateJS() {
-  const code = document.getElementById('inputCode').value;
-  if (!code.trim()) { showOutput('Input is empty!'); return; }
-  // Custom obfuscation: encode as hex, wrap in eval, use split/join trick
-  let hex = '';
-  for (let i=0; i<code.length; i++) {
-    let h = code.charCodeAt(i).toString(16);
-    while(h.length<2) h='0'+h;
-    hex += h;
-  }
-  let obf = `eval(unescape(encodeURIComponent(atob('${btoa(code)}'))))`;
-  // Mix with hex representation for extra fun
-  let extraObf = `eval(''+String.fromCharCode.apply(0,('${hex}').match(/.{1,2}/g).map(x=>parseInt(x,16))))`;
-  // Pick the longer (to maximize obfuscation)
-  showOutput(hex.length>code.length*2?extraObf:obf);
-}
+  <div class="container">
+    <h1>Pkdriller Codes Protector</h1>
+    <div class="subtitle">
+      Obfuscate & Deobfuscate your JavaScript and HTML codes instantly.<br>
+      <span style="color: var(--neon-red);">Cybernetic Holographic Edition</span>
+    </div>
 
-function deobfuscateJS() {
-  const code = document.getElementById('inputCode').value;
-  if (!code.trim()) { showOutput('Input is empty!'); return; }
-  // Try to detect base64
-  let match = code.match(/atob\(['"`]([^'"`]+)['"`]\)/);
-  if (match) {
-    try {
-      let decoded = atob(match[1]);
-      showOutput(decoded);
-      return;
-    } catch {}
-  }
-  // Try to detect hex
-  let hexMatch = code.match(/(['"`])([0-9a-fA-F]{20,})\1/);
-  if (hexMatch) {
-    try {
-      let hexStr = hexMatch[2];
-      let result = '';
-      for(let i=0;i<hexStr.length;i+=2){
-        result += String.fromCharCode(parseInt(hexStr.substr(i,2),16));
+    <div class="flex-area">
+      <div class="panel">
+        <label for="inputCode"><b>Input your Code (JavaScript or HTML):</b></label>
+        <textarea id="inputCode" placeholder="Paste your JS or HTML code here..."></textarea>
+        <div class="btn-group">
+          <button class="btn" onclick="obfuscateJS()">Obfuscate JavaScript</button>
+          <button class="btn" onclick="obfuscateHTML()">Obfuscate HTML</button>
+          <button class="btn" onclick="deobfuscateJS()">Deobfuscate JavaScript</button>
+          <button class="btn" onclick="deobfuscateHTML()">Deobfuscate HTML</button>
+          <button class="btn" onclick="clearAll()">Clear</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <label for="outputCode"><b>Result:</b></label>
+        <textarea id="outputCode" readonly placeholder="Your obfuscated/deobfuscated code will appear here..."></textarea>
+        <div class="btn-group">
+          <button class="btn" onclick="copyResult()">Copy Result</button>
+        </div>
+      </div>
+    </div>
+    <div class="social-btns">
+      <a class="social-btn" href="https://whatsapp.com/channel/0029Vad7YNyJuyA77CtIPX0x" target="_blank" rel="noopener">
+        <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M23.7 19.2c-.4-.2-2.2-1.1-2.5-1.2-.3-.1-.5-.2-.7.2-.2.3-.7 1.2-.8 1.4-.1.2-.3.3-.6.1-.4-.2-1.5-.6-2.8-1.9-1-1.1-1.7-2.3-1.9-2.7-.2-.3 0-.4.2-.6.2-.2.3-.3.4-.5.1-.1.1-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.7-.9-2.4-.2-.5-.5-.4-.7-.4-.2 0-.4 0-.5 0-.2 0-.5.1-.8.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.2 3.2c.1.2 2.1 3.2 5.1 4.4.7.3 1.3.5 1.7.6.7.2 1.3.2 1.7.1.5-.1 1.5-.6 1.7-1.2.2-.5.2-1 .1-1.2-.1-.2-.4-.3-.7-.5z" fill="#fff"/></svg>
+        Follow Channel
+      </a>
+      <a class="social-btn" href="https://github.com/Pkdriller" target="_blank" rel="noopener">
+        <svg viewBox="0 0 32 32" fill="none"><path d="M16.002 2.004c-7.73 0-14 6.27-14 14 0 6.175 4.006 11.413 9.566 13.264.7.13.956-.304.956-.676 0-.335-.012-1.222-.018-2.4-3.89.844-4.71-1.876-4.71-1.876-.637-1.618-1.556-2.05-1.556-2.05-1.272-.87.096-.853.096-.853 1.406.099 2.148 1.444 2.148 1.444 1.25 2.143 3.282 1.525 4.082 1.168.127-.905.49-1.526.892-1.878-3.104-.353-6.368-1.552-6.368-6.907 0-1.526.545-2.775 1.44-3.755-.144-.354-.625-1.78.136-3.712 0 0 1.176-.377 3.855 1.433a13.36 13.36 0 0 1 3.514-.472c1.193.005 2.395.162 3.514.472 2.677-1.81 3.852-1.433 3.852-1.433.762 1.932.281 3.358.138 3.712.898.98 1.438 2.23 1.438 3.755 0 5.367-3.268 6.55-6.384 6.896.504.434.956 1.293.956 2.605 0 1.88-.017 3.398-.017 3.863 0 .375.253.812.963.674C25.999 27.413 30 22.175 30 16.004c0-7.73-6.27-14-13.998-14z" fill="#fff"/></svg>
+        Follow on GitHub
+      </a>
+    </div>
+    <div class="footer">
+      &copy; 2025 <span style="color: var(--neon-pink)">Pkdriller</span>. All rights reserved.<br>
+      <span style="color: var(--neon-red)">Cybernetic | Holographic | High Tech</span>
+    </div>
+  </div>
+
+  <!-- Live background cybernetic grid/holo effect -->
+  <script>
+    const canvas = document.getElementById('live-bg');
+    const ctx = canvas.getContext('2d');
+    let w = window.innerWidth, h = window.innerHeight;
+    function resizeCanvas() {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w;
+      canvas.height = h;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Holo-cyber grid animation
+    function drawGrid(time) {
+      ctx.clearRect(0, 0, w, h);
+      ctx.save();
+      // Fade layer
+      ctx.globalAlpha = 0.7;
+      ctx.fillStyle = "#090015";
+      ctx.fillRect(0, 0, w, h);
+
+      // Grid lines
+      let spacing = 44, t = time / 1200;
+      for (let x = 0; x < w; x += spacing) {
+        ctx.strokeStyle = `rgba(57,255,20,${0.16 + 0.08*Math.sin(t + x/100)})`;
+        ctx.shadowColor = "#ff00de";
+        ctx.shadowBlur = 10;
+        ctx.beginPath();
+        ctx.moveTo(x + 8*Math.sin(t + x*0.03), 0);
+        ctx.lineTo(x + 8*Math.cos(t + x*0.07), h);
+        ctx.stroke();
       }
-      showOutput(result);
-      return;
-    } catch {}
-  }
-  // Try to eval to get the code (dangerous, so sandbox)
-  try {
-    // eslint-disable-next-line no-new-func
-    let f = new Function('', code);
-    showOutput('// Deobfuscation requires manual review.\n// This looks like code that executes itself.');
-  } catch {
-    showOutput('// Could not deobfuscate this JS automatically.');
-  }
-}
+      for (let y = 0; y < h; y += spacing) {
+        ctx.strokeStyle = `rgba(255,0,222,${0.11 + 0.12*Math.cos(t + y/90)})`;
+        ctx.shadowColor = "#39ff14";
+        ctx.shadowBlur = 8;
+        ctx.beginPath();
+        ctx.moveTo(0, y + 6*Math.sin(t + y*0.05));
+        ctx.lineTo(w, y + 6*Math.cos(t + y*0.01));
+        ctx.stroke();
+      }
+      // Dots
+      for(let i=0; i<60; i++) {
+        let gx = (i*spacing + 32 + (20*Math.sin(t/2+i)))%w;
+        let gy = ((i*spacing*0.7) + 19 + (30*Math.cos(t/3-i)))%h;
+        ctx.beginPath();
+        ctx.arc(gx, gy, 3 + Math.sin(time/300 + i)*2, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(255,7,58,${0.5+0.5*Math.sin(t+i)})`;
+        ctx.shadowColor = "#ff00de";
+        ctx.shadowBlur = 12;
+        ctx.fill();
+      }
+      ctx.restore();
+      requestAnimationFrame(drawGrid);
+    }
+    requestAnimationFrame(drawGrid);
+  </script>
 
-// HTML obfuscation: entity encode & simple char code shifting
-function obfuscateHTML() {
-  const code = document.getElementById('inputCode').value;
-  if (!code.trim()) { showOutput('Input is empty!'); return; }
-  // Option 1: entity-encode everything
-  let obf = '';
-  for (let i=0; i<code.length; i++) {
-    obf += `&#${code.charCodeAt(i)+1};`; // +1 for extra obfuscation
-  }
-  showOutput(obf);
-}
-function deobfuscateHTML() {
-  const code = document.getElementById('inputCode').value;
-  if (!code.trim()) { showOutput('Input is empty!'); return; }
-  // Try to detect entity encoding
-  try {
-    // Restore -1 to char codes
-    let out = code.replace(/&#(\d+);/g, (m, n) => String.fromCharCode(Number(n)-1));
-    showOutput(out);
-  } catch {
-    showOutput('// Could not deobfuscate this HTML automatically.');
-  }
-}
+  <!-- Main JS for obfuscation/deobfuscation -->
+  <script>
+    // Simple JavaScript obfuscation using String.fromCharCode
+    function obfuscateJS() {
+      const code = document.getElementById('inputCode').value;
+      if(!code.trim()) return alert("Please enter JavaScript code to obfuscate!");
+      let charCodes = [];
+      for (let i = 0; i < code.length; i++) charCodes.push(code.charCodeAt(i));
+      let result = `eval(String.fromCharCode(${charCodes.join(',')}))`;
+      document.getElementById('outputCode').value = result;
+    }
 
-// UI helpers
-function showOutput(txt) {
-  document.getElementById('outputCode').value = txt;
-}
-function copyOutput() {
-  const out = document.getElementById('outputCode');
-  if (out.value) {
-    out.select();
-    document.execCommand('copy');
-    out.blur();
-    showOutput('Copied to clipboard!\n\n' + out.value);
-    setTimeout(() => showOutput(out.value.replace(/^Copied to clipboard!\n\n/,"")), 1800);
-  }
-}
-function clearFields() {
-  document.getElementById('inputCode').value = '';
-  document.getElementById('outputCode').value = '';
-}
-</script>
+    // Simple deobfuscation for String.fromCharCode-based obfuscation
+    function deobfuscateJS() {
+      const code = document.getElementById('inputCode').value.trim();
+      let match = code.match(/fromCharCode\s*\(([\d\s,]+)\)/);
+      if (!match) {
+        alert("Could not find a recognizable 'fromCharCode' pattern. Only supports basic obfuscation reversal.");
+        return;
+      }
+      let charCodes = match[1].split(',').map(s => String.fromCharCode(parseInt(s)));
+      let result = charCodes.join('');
+      document.getElementById('outputCode').value = result;
+    }
+
+    // HTML Obfuscation: Base64 encode with data URI
+    function obfuscateHTML() {
+      const code = document.getElementById('inputCode').value;
+      if(!code.trim()) return alert("Please enter HTML code to obfuscate!");
+      let b64 = btoa(unescape(encodeURIComponent(code)));
+      let result = `<iframe src="data:text/html;base64,${b64}" style="width:100%;height:100%;border:none;"></iframe>`;
+      document.getElementById('outputCode').value = result;
+    }
+
+    // HTML Deobfuscation: Extract and decode base64 from data URI
+    function deobfuscateHTML() {
+      const code = document.getElementById('inputCode').value.trim();
+      let match = code.match(/src=["']data:text\/html;base64,([^"']+)["']/);
+      if (!match) {
+        alert("Could not find a recognizable base64 HTML pattern. Only supports basic reversal.");
+        return;
+      }
+      let decoded = decodeURIComponent(escape(atob(match[1])));
+      document.getElementById('outputCode').value = decoded;
+    }
+
+    function clearAll() {
+      document.getElementById('inputCode').value = '';
+      document.getElementById('outputCode').value = '';
+    }
+
+    function copyResult() {
+      const output = document.getElementById('outputCode');
+      if(!output.value) return;
+      output.select();
+      document.execCommand('copy');
+      output.setSelectionRange(0,0);
+      alert('Result copied to clipboard!');
+    }
+  </script>
 </body>
-  </html>
+</html>
