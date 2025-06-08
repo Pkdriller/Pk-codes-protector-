@@ -36,9 +36,8 @@
       min-height: 100vh;
       font-family: 'Share Tech Mono', 'Orbitron', monospace;
       color: var(--hacker-green);
-      overflow: hidden;
+      overflow-x: hidden;
     }
-    /* Holographic moving cyber grid background */
     body::before {
       content: "";
       position: fixed;
@@ -54,7 +53,6 @@
       0% { background-position: 0 0, 0 0; }
       100% { background-position: 80px 160px, 160px 80px; }
     }
-    /* Loading overlay */
     #loading-overlay {
       position: fixed;
       inset: 0;
@@ -90,7 +88,6 @@
       color: var(--hacker-green);
       text-shadow: 0 0 8px var(--hacker-green), 0 0 2px var(--hacker-pink);
     }
-    /* Main content */
     .container {
       position: relative;
       z-index: 2;
@@ -103,6 +100,7 @@
       padding: 24px 24px 48px 24px;
       backdrop-filter: blur(4px);
       overflow: visible;
+      display: none;
     }
     .title {
       font-family: 'Orbitron', monospace;
@@ -220,7 +218,6 @@
   </style>
 </head>
 <body>
-  <!-- Loading Overlay -->
   <div id="loading-overlay">
     <div class="loader-circle"></div>
     <div class="loading-text">System Initializing...</div>
@@ -228,8 +225,7 @@
       <span style="font-family:Orbitron,sans-serif;letter-spacing:0.14em;">HACKING</span>
     </div>
   </div>
-  <!-- Main Container -->
-  <div class="container" style="display:none;">
+  <div class="container">
     <div class="title">Pkdriller Codes Protector</div>
     <div class="subtitle">
       Obfuscate &amp; Deobfuscate JavaScript &amp; HTML with Cybernetic Security.<br>
@@ -258,18 +254,18 @@
     </div>
   </div>
   <script>
-    // ----- Animated loading -----
-    window.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
+    // Loading overlay logic
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
         document.getElementById('loading-overlay').style.opacity = '0';
-        setTimeout(() => {
+        setTimeout(function() {
           document.getElementById('loading-overlay').style.display = 'none';
           document.querySelector('.container').style.display = 'block';
         }, 600);
-      }, 1800);
+      }, 1600);
     });
 
-    // ----- Obfuscation -----
+    // Obfuscation
     function obfuscateCode() {
       const code = document.getElementById('input-code').value;
       if (!code.trim()) {
@@ -290,7 +286,7 @@
       document.getElementById('output-code').value = obfuscated;
     }
 
-    // ----- Deobfuscation -----
+    // Deobfuscation
     function deobfuscateCode() {
       const code = document.getElementById('input-code').value;
       if (!code.trim()) {
@@ -317,7 +313,7 @@
       document.getElementById('output-code').value = deob;
     }
 
-    // ----- Upload/Download -----
+    // Upload/Download
     function handleFileUpload(event) {
       const file = event.target.files[0];
       if (!file) return;
